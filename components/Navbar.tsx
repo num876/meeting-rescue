@@ -90,79 +90,63 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Menu Dropdown */}
       <AnimatePresence>
         {mobileOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 sm:hidden"
-              onClick={() => setMobileOpen(false)}
-            />
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-72 bg-surface-0/95 backdrop-blur-xl border-l border-border z-50 sm:hidden pt-20 px-4 shadow-2xl flex flex-col"
-            >
-              <div className="flex flex-col gap-2">
-                <Link
-                  href="/"
-                  onClick={() => setMobileOpen(false)}
-                  className={`py-3 px-4 rounded-lg font-medium transition-colors touch-target ${pathname === '/' ? 'text-primary bg-surface-2' : 'text-secondary hover:text-primary hover:bg-surface-2'}`}
-                >
-                  New Meeting
-                </Link>
-                {user ? (
-                  <>
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-16 left-0 right-0 bg-background border-b border-border z-40 sm:hidden shadow-xl"
+          >
+            <div className="flex flex-col p-4 gap-2">
+              <Link
+                href="/"
+                onClick={() => setMobileOpen(false)}
+                className={`py-3 px-4 rounded-lg font-medium transition-colors ${pathname === '/' ? 'text-primary bg-surface-2' : 'text-secondary hover:text-primary hover:bg-surface-2'}`}
+              >
+                New Meeting
+              </Link>
+              {user ? (
+                <>
+                  <Link
+                    href="/dashboard"
+                    onClick={() => setMobileOpen(false)}
+                    className={`py-3 px-4 rounded-lg font-medium transition-colors ${pathname === '/dashboard' ? 'text-primary bg-surface-2' : 'text-secondary hover:text-primary hover:bg-surface-2'}`}
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    href="/settings"
+                    onClick={() => setMobileOpen(false)}
+                    className={`py-3 px-4 rounded-lg font-medium transition-colors ${pathname === '/settings' ? 'text-primary bg-surface-2' : 'text-secondary hover:text-primary hover:bg-surface-2'}`}
+                  >
+                    Settings
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/pricing"
+                    onClick={() => setMobileOpen(false)}
+                    className={`py-3 px-4 rounded-lg font-medium transition-colors ${pathname === '/pricing' ? 'text-primary bg-surface-2' : 'text-secondary hover:text-primary hover:bg-surface-2'}`}
+                  >
+                    Pricing
+                  </Link>
+                  <div className="pt-2 mt-2 border-t border-border/50">
                     <Link
-                      href="/dashboard"
+                      href="/signup"
                       onClick={() => setMobileOpen(false)}
-                      className={`py-3 px-4 rounded-lg font-medium transition-colors touch-target ${pathname === '/dashboard' ? 'text-primary bg-surface-2' : 'text-secondary hover:text-primary hover:bg-surface-2'}`}
+                      className="btn-primary justify-center w-full mt-2"
                     >
-                      Dashboard
+                      Sign Up Free
                     </Link>
-                    <Link
-                      href="/settings"
-                      onClick={() => setMobileOpen(false)}
-                      className={`py-3 px-4 rounded-lg font-medium transition-colors touch-target ${pathname === '/settings' ? 'text-primary bg-surface-2' : 'text-secondary hover:text-primary hover:bg-surface-2'}`}
-                    >
-                      Settings
-                    </Link>
-                  </>
-                ) : (
-                  <>
-                    <Link
-                      href="/pricing"
-                      onClick={() => setMobileOpen(false)}
-                      className={`py-3 px-4 rounded-lg font-medium transition-colors touch-target ${pathname === '/pricing' ? 'text-primary bg-surface-2' : 'text-secondary hover:text-primary hover:bg-surface-2'}`}
-                    >
-                      Pricing
-                    </Link>
-                    <div className="pt-4 mt-6 border-t border-border/50 flex flex-col gap-2">
-                      <Link
-                        href="/login"
-                        onClick={() => setMobileOpen(false)}
-                        className="btn-secondary justify-center w-full touch-target"
-                      >
-                        Sign In
-                      </Link>
-                      <Link
-                        href="/signup"
-                        onClick={() => setMobileOpen(false)}
-                        className="btn-primary justify-center w-full touch-target shadow-glow-accent"
-                      >
-                        Sign Up Free
-                      </Link>
-                    </div>
-                  </>
-                )}
-              </div>
-            </motion.div>
-          </>
+                  </div>
+                </>
+              )}
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </nav>
