@@ -8,7 +8,7 @@ interface AnimatedTitleProps {
 }
 
 export function AnimatedTitle({ text, className = "", delay = 0 }: AnimatedTitleProps) {
-  // Split the text into an array of words, keeping the spaces
+  // Split the text into an array of words
   const words = text.split(" ")
 
   const container: Variants = {
@@ -46,7 +46,7 @@ export function AnimatedTitle({ text, className = "", delay = 0 }: AnimatedTitle
       {words.map((word, index) => (
         <span key={index} style={{ display: "inline-flex" }}>
           {word.split("").map((char, charIndex) => (
-            <motion.span variants={child} key={charIndex}>
+            <motion.span variants={child} key={charIndex} style={{ display: "inline" }}>
               {char}
             </motion.span>
           ))}
