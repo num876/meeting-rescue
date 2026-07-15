@@ -70,19 +70,19 @@ export function Navbar() {
         </div>
 
         {/* Mobile Actions */}
-        <div className="flex sm:hidden items-center gap-2">
+        <div className="flex sm:hidden items-center gap-1">
           {user ? (
-            <Link href="/dashboard" className="btn-ghost text-xs py-1.5 px-3 touch-target">
+            <Link href="/dashboard" className="text-sm font-medium text-secondary hover:text-primary px-2 py-2">
               Dashboard
             </Link>
           ) : (
-            <Link href="/signup" className="btn-primary text-xs py-1.5 px-3 touch-target active:scale-95">
-              Get Started
+            <Link href="/login" className="text-sm font-medium text-secondary hover:text-primary px-2 py-2">
+              Sign In
             </Link>
           )}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="btn-ghost p-2 touch-target min-w-[44px] min-h-[44px] flex items-center justify-center"
+            className="btn-ghost p-2 -mr-2"
             aria-label="Toggle navigation"
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
