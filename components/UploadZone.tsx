@@ -64,10 +64,10 @@ export function UploadZone({ onFileDrop, onTranscriptPaste, onRecordingComplete 
     <div className="w-full space-y-4 sm:space-y-5">
       {/* Upload / Record Card */}
       <div
-        className={`relative glass-card p-6 sm:p-8 lg:p-10 transition-all duration-300 ${
-          isDragging
-            ? 'border-accent-500 bg-accent-500/5 scale-[1.01] shadow-glow-accent'
-            : 'hover:border-accent-500/30'
+        className={`relative p-5 sm:p-10 rounded-2xl sm:rounded-3xl border-2 transition-all duration-300 glass-card bg-surface/50 overflow-hidden ${
+          isDragging 
+            ? 'border-accent-500 bg-accent-500/5' 
+            : 'border-border/50 hover:border-accent-500/30 hover:bg-surface'
         }`}
         onDragOver={(e) => { e.preventDefault(); setIsDragging(true) }}
         onDragLeave={(e) => { e.preventDefault(); setIsDragging(false) }}
@@ -81,7 +81,7 @@ export function UploadZone({ onFileDrop, onTranscriptPaste, onRecordingComplete 
           onChange={handleFileChange}
         />
 
-        <div className="flex flex-col items-center gap-4 sm:gap-5">
+        <div className="flex flex-col items-center gap-3 sm:gap-5">
           {/* Animated upload icon */}
           <motion.div
             className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-surface-2 border border-border flex items-center justify-center flex-shrink-0"

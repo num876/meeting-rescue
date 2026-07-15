@@ -184,15 +184,15 @@ export default function Home() {
               <span className="whitespace-nowrap">Powered by Groq & Llama 3.3</span>
             </div>
             
-            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight sm:leading-tight lg:leading-[1.1] break-words">
-              <AnimatedTitle text="Never lose a" delay={0.1} /><br />
-              <div className="py-0.5 sm:py-1">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] sm:leading-[1.1] lg:leading-[1.1] break-words flex flex-wrap justify-center lg:justify-start items-center gap-x-[0.25em] gap-y-2">
+              <AnimatedTitle text="Never lose a" delay={0.1} />
+              <span className="inline-flex items-center text-accent-400">
                 <RotatingText words={['decision', 'deadline', 'insight', 'action item']} />
-              </div>
+              </span>
               <AnimatedTitle text="again." delay={0.5} />
             </h1>
             
-            <p className="text-secondary text-sm sm:text-base lg:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed animate-slide-up" style={{ animationDelay: '800ms' }}>
+            <p className="text-secondary text-sm sm:text-base lg:text-lg max-w-xl mx-auto lg:mx-0 leading-loose sm:leading-relaxed animate-slide-up" style={{ animationDelay: '800ms' }}>
               Upload a recording or paste a transcript. Get a clean summary, firm decisions, action items with owners, and a send-ready follow-up email — in under 30 seconds.
             </p>
           </div>

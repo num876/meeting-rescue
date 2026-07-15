@@ -37,7 +37,7 @@ export function AnimatedTitle({ text, className = "", delay = 0 }: AnimatedTitle
 
   return (
     <motion.span
-      style={{ display: "inline-flex", flexWrap: "wrap", justifyContent: "center", gap: "0.25em" }}
+      style={{ display: "inline-flex", flexWrap: "wrap", gap: "0.25em" }}
       variants={container}
       initial="hidden"
       animate="visible"
