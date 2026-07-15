@@ -25,6 +25,12 @@ interface PipelineProgressProps {
 
 const STAGES = [
   {
+    id: 'preparing' as const,
+    label: 'Downloading AI engine',
+    subtitle: 'Preparing local processor',
+    Icon: Loader2,
+  },
+  {
     id: 'transcribing' as const,
     label: 'Transcribing audio',
     subtitle: 'Converting speech to text',
@@ -47,10 +53,11 @@ const STAGES = [
 /* Map each PipelineStage to its ordered index (for comparison) */
 const stageOrder: Record<string, number> = {
   idle: -1,
-  transcribing: 0,
-  extracting: 1,
-  drafting: 2,
-  complete: 3,
+  preparing: 0,
+  transcribing: 1,
+  extracting: 2,
+  drafting: 3,
+  complete: 4,
   error: -1,
 }
 

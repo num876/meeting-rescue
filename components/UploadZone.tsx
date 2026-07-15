@@ -114,8 +114,8 @@ export function UploadZone({ onFileDrop, onTranscriptPaste, onRecordingComplete 
                   <p className="text-xs sm:text-sm font-medium text-primary truncate">{selectedFile.name}</p>
                   <p className="text-xs text-muted">{formatSize(selectedFile.size)}</p>
                 </div>
-                <button onClick={clearFile} className="btn-ghost p-1.5 rounded-lg flex-shrink-0 touch-target">
-                  <X className="w-4 h-4" />
+                <button onClick={clearFile} className="btn-ghost p-1.5 rounded-lg flex-shrink-0 touch-target min-w-[44px] min-h-[44px] flex items-center justify-center">
+                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </motion.div>
             )}

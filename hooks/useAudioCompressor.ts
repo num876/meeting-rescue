@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react'
 
 export function useAudioCompressor() {
+  const [isDownloadingEngine, setIsDownloadingEngine] = useState(false)
   const [isCompressing, setIsCompressing] = useState(false)
   const [progress, setProgress] = useState(0)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -11,6 +12,7 @@ export function useAudioCompressor() {
 
   const loadFFmpeg = async () => {
     if (loadedRef.current) return
+    setIsDownloadingEngine(true)
 
     // Dynamically import FFmpeg only in the browser
     const { FFmpeg } = await import('@ffmpeg/ffmpeg')
@@ -27,12 +29,15 @@ export function useAudioCompressor() {
       setProgress(Math.round(progress * 100))
     })
 
-    await ffmpeg.load({
-      coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-      wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
-    })
-
-    loadedRef.current = true
+    try {
+      await ffmpeg.load({
+        coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+        wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
+      })
+      loadedRef.current = true
+    } finally {
+      setIsDownloadingEngine(false)
+    }
   }
 
   const compressAudio = async (file: File | Blob): Promise<Blob> => {
@@ -69,5 +74,10 @@ export function useAudioCompressor() {
     }
   }
 
-  return { compressAudio, isCompressing, progress }
+    return {
+      compressAudio,
+      isCompressing,
+      isDownloadingEngine,
+      progress
+    }
 }

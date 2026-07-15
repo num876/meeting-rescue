@@ -72,7 +72,7 @@ export function EmailDraftPreview({
             type="text"
             value={subject}
             onChange={handleSubjectChange}
-            className="flex-1 bg-transparent text-sm font-medium text-primary
+            className="flex-1 bg-transparent text-base sm:text-sm font-medium text-primary
                        placeholder:text-muted
                        focus:outline-none focus:ring-0 min-h-[32px]"
             placeholder="Enter subject…"
@@ -89,7 +89,7 @@ export function EmailDraftPreview({
           ref={textareaRef}
           value={body}
           onChange={handleBodyChange}
-          className="w-full bg-transparent text-sm text-primary font-mono leading-relaxed
+          className="w-full bg-transparent text-base sm:text-sm text-primary font-mono leading-relaxed
                      placeholder:text-muted resize-none
                      focus:outline-none focus:ring-0
                      min-h-[200px]"

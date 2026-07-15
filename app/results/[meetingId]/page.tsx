@@ -94,7 +94,7 @@ export default function ResultsPage() {
                 </span>
               </div>
             </div>
-            <button onClick={() => router.push('/')} className="btn-secondary text-xs py-2 px-3 sm:py-2.5 sm:px-4 touch-target whitespace-nowrap">
+            <button onClick={() => router.push('/')} className="btn-secondary w-full sm:w-auto text-xs py-2 px-3 sm:py-2.5 sm:px-4 touch-target min-h-[44px] whitespace-nowrap active:scale-95">
               New Meeting
             </button>
           </div>

@@ -35,4 +35,4 @@ export interface MeetingSummary {
   createdAt: string
 }
 
-export type PipelineStage = 'idle' | 'transcribing' | 'extracting' | 'drafting' | 'complete' | 'error'
+export type PipelineStage = 'idle' | 'preparing' | 'transcribing' | 'extracting' | 'drafting' | 'complete' | 'error'

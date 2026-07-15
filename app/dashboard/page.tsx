@@ -43,7 +43,7 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        <Link href="/" className="btn-primary group">
+        <Link href="/" className="btn-primary group active:scale-95">
           <Plus className="w-5 h-5 group-hover:rotate-90 transition-transform" />
           New Meeting
         </Link>
@@ -138,7 +138,7 @@ export default function DashboardPage() {
           <p className="text-secondary mb-8 max-w-sm relative z-10 text-lg">
             Upload your first recording to magically extract decisions, summaries, and action items.
           </p>
-          <Link href="/" className="btn-primary relative z-10 hover:scale-105 transition-transform duration-300 shadow-glow-accent">
+          <Link href="/" className="btn-primary relative z-10 active:scale-95 transition-transform duration-300 shadow-glow-accent">
             Upload Recording
           </Link>
         </motion.div>

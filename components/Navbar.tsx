@@ -29,6 +29,7 @@ export function Navbar() {
               alt="MeetingRescue Logo" 
               width={32} 
               height={32}
+              priority
               className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-300"
             />
           </div>
@@ -54,7 +55,7 @@ export function Navbar() {
                 Dashboard
               </Link>
               <div className="h-4 w-px bg-border mx-2" />
-              <Link href="/settings" className="flex items-center gap-2 btn-ghost text-sm py-2 px-3 touch-target">
+              <Link href="/settings" className="flex items-center gap-2 btn-ghost text-sm py-2 px-3 touch-target min-h-[44px]">
                 <div className="w-6 h-6 rounded-full bg-accent-500/20 text-accent-400 flex items-center justify-center text-xs font-bold flex-shrink-0">
                   {(user.displayName || user.email || 'U').charAt(0).toUpperCase()}
                 </div>
@@ -63,19 +64,30 @@ export function Navbar() {
           ) : (
             <>
               <Link href="/login" className="btn-ghost text-sm ml-2 touch-target">Sign In</Link>
-              <Link href="/signup" className="btn-primary py-2 px-4 ml-2 touch-target">Sign Up Free</Link>
+              <Link href="/signup" className="btn-primary py-2 px-4 ml-2 touch-target active:scale-95">Sign Up Free</Link>
             </>
           )}
         </div>
 
-        {/* Mobile Toggle */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="sm:hidden btn-ghost p-2 touch-target"
-          aria-label="Toggle navigation"
-        >
-          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        {/* Mobile Actions */}
+        <div className="flex sm:hidden items-center gap-2">
+          {user ? (
+            <Link href="/dashboard" className="btn-ghost text-xs py-1.5 px-3 touch-target">
+              Dashboard
+            </Link>
+          ) : (
+            <Link href="/signup" className="btn-primary text-xs py-1.5 px-3 touch-target active:scale-95">
+              Get Started
+            </Link>
+          )}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="btn-ghost p-2 touch-target min-w-[44px] min-h-[44px] flex items-center justify-center"
+            aria-label="Toggle navigation"
+          >
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Drawer */}

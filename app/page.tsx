@@ -22,7 +22,7 @@ export default function Home() {
   const [durationStr, setDurationStr] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
   
-  const { compressAudio } = useAudioCompressor()
+  const { compressAudio, isDownloadingEngine } = useAudioCompressor()
   
   const [currentTranscript, setCurrentTranscript] = useState('')
   const [currentAudioUrl, setCurrentAudioUrl] = useState<string | undefined>()
@@ -217,7 +217,7 @@ export default function Home() {
 
       {/* Pipeline Takeover */}
       <PipelineProgress
-        stage={stage}
+        stage={isDownloadingEngine ? 'preparing' : stage}
         durationStr={durationStr}
         errorMsg={errorMsg}
         onRetry={handleRetry}
