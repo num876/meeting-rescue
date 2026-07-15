@@ -44,7 +44,7 @@ export function AnimatedTitle({ text, className = "", delay = 0 }: AnimatedTitle
       className={className}
     >
       {words.map((word, index) => (
-        <span key={index} style={{ overflow: "hidden", display: "inline-flex" }}>
+        <span key={index} style={{ display: "inline-flex" }}>
           {word.split("").map((char, charIndex) => (
             <motion.span variants={child} key={charIndex}>
               {char}

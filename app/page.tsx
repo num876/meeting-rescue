@@ -7,7 +7,8 @@ import { RotatingText } from '@/components/RotatingText'
 import { AppPreviewCard } from '@/components/AppPreviewCard'
 import { AnimatedTitle } from '@/components/AnimatedTitle'
 import { Sparkles } from 'lucide-react'
-import type { PipelineStage, MeetingSummary } from '@/types/meeting'
+import type { PipelineStage, MeetingSummary, Decision, ActionItem } from '@/types/meeting'
+import type { SavedMeeting } from '@/store/useMeetingStore'
 import { auth, storage } from '@/lib/firebase'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { useMeetingStore } from '@/store/useMeetingStore'
@@ -60,8 +61,20 @@ export default function Home() {
         }
 
         const user = auth.currentUser
+        const savedMeeting: SavedMeeting = {
+          id: meetingId,
+          title: data.emailDraft?.subject || 'Meeting Summary',
+          date: new Date().toISOString(),
+          durationStr: durationStr,
+          decisionCount: (data.decisions || []).length,
+          actionItemCount: (data.actionItems || []).length,
+          summary: data.overallSummary || '',
+          decisions: (data.decisions || []) as Decision[],
+          actionItems: (data.actionItems || []) as ActionItem[],
+        }
+        
         if (user) {
-          await useMeetingStore.getState().addMeeting(summary, user.uid)
+          await useMeetingStore.getState().addMeeting(savedMeeting, user.uid)
         } else {
           sessionStorage.setItem(`meeting_${meetingId}`, JSON.stringify(summary))
         }
