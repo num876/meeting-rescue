@@ -187,7 +187,7 @@ export default function Home() {
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] sm:leading-[1.1] lg:leading-[1.1] break-words flex flex-wrap justify-center lg:justify-start items-center gap-x-[0.25em] gap-y-2">
               <AnimatedTitle text="Never lose a" delay={0.1} />
               <span className="inline-flex items-center text-accent-400">
-                <RotatingText words={['decision', 'deadline', 'insight', 'action item']} />
+                <RotatingText words={['decision', 'deadline', 'insight']} />
               </span>
               <AnimatedTitle text="again." delay={0.5} />
             </h1>
