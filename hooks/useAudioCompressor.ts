@@ -60,7 +60,7 @@ export function useAudioCompressor() {
       await ffmpeg.deleteFile(outputName)
 
       setIsCompressing(false)
-      return new Blob([(data as Uint8Array).buffer], { type: 'audio/mp3' })
+      return new Blob([new Uint8Array(data instanceof ArrayBuffer ? data : data.buffer || new ArrayBuffer(0))], { type: 'audio/mp3' })
     } catch (error) {
       setIsCompressing(false)
       console.error('FFmpeg Compression error:', error)
