@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface RotatingTextProps {
@@ -9,11 +9,6 @@ interface RotatingTextProps {
 
 export function RotatingText({ words, interval = 3000 }: RotatingTextProps) {
   const [index, setIndex] = useState(0)
-
-  // Find the longest word to act as an invisible strut to naturally size the container
-  const longestWord = useMemo(() => {
-    return words.reduce((a, b) => (a.length > b.length ? a : b), '')
-  }, [words])
 
   useEffect(() => {
     const timer = setInterval(() => {
