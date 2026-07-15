@@ -51,8 +51,18 @@ export default function Home() {
           // ensure arrays default correctly if partial
           overallSummary: data.overallSummary || '',
           attendeesDetected: data.attendeesDetected || [],
-          decisions: (data.decisions || []) as Decision[],
-          actionItems: (data.actionItems || []) as ActionItem[],
+          decisions: (data.decisions || []).map((d, i) => ({
+            id: `dec-${i}`,
+            summary: d.summary || '',
+            context: d.context || ''
+          })),
+          actionItems: (data.actionItems || []).map((a, i) => ({
+            id: `act-${i}`,
+            task: a.task || '',
+            owner: a.owner || null,
+            dueDate: a.dueDate || null,
+            confidence: (a.confidence as 'high' | 'medium' | 'low') || 'medium'
+          })),
           emailDraft: {
             subject: data.emailDraft?.subject || '',
             body: data.emailDraft?.body || ''
@@ -61,22 +71,22 @@ export default function Home() {
         }
 
         const user = auth.currentUser
-        const savedMeeting: SavedMeeting = {
-          id: meetingId,
-          title: data.emailDraft?.subject || 'Meeting Summary',
-          date: new Date().toISOString(),
-          durationStr: durationStr,
-          decisionCount: (data.decisions || []).length,
-          actionItemCount: (data.actionItems || []).length,
-          summary: data.overallSummary || '',
-          decisions: (data.decisions || []) as Decision[],
-          actionItems: (data.actionItems || []) as ActionItem[],
-        }
-        
+        // Always save to sessionStorage for the Results page to read
+        sessionStorage.setItem(`meeting_${meetingId}`, JSON.stringify(summary))
+
         if (user) {
+          const savedMeeting = {
+            id: meetingId,
+            title: summary.title,
+            date: summary.meetingDate,
+            durationStr: durationStr,
+            decisionCount: summary.decisions.length,
+            actionItemCount: summary.actionItems.length,
+            summary: summary.overallSummary,
+            decisions: summary.decisions,
+            actionItems: summary.actionItems
+          }
           await useMeetingStore.getState().addMeeting(savedMeeting, user.uid)
-        } else {
-          sessionStorage.setItem(`meeting_${meetingId}`, JSON.stringify(summary))
         }
 
         setTimeout(() => {
