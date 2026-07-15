@@ -78,7 +78,7 @@ export function PipelineProgress({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
-        className="fixed inset-0 z-[60] flex items-center justify-center bg-background/95 backdrop-blur-xl"
+        className="fixed inset-0 z-[60] flex items-center justify-center bg-background/95 backdrop-blur-xl p-4 sm:p-0"
       >
         {/* ── Glass card container ──────────────────────────── */}
         <motion.div
@@ -86,20 +86,20 @@ export function PipelineProgress({
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 24, scale: 0.96 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="glass-card w-full max-w-md mx-4 p-8 rounded-2xl"
+          className="glass-card w-full max-w-md mx-4 p-6 sm:p-8 rounded-2xl"
         >
           {/* ── Header ─────────────────────────────────────── */}
-          <div className="text-center mb-8">
-            <h2 className="text-lg font-semibold text-primary">
+          <div className="text-center mb-6 sm:mb-8">
+            <h2 className="text-base sm:text-lg font-semibold text-primary">
               Processing your meeting
             </h2>
-            <p className="text-xs text-secondary mt-1">
+            <p className="text-xs text-secondary mt-0.5 sm:mt-1">
               This usually takes under 30 seconds
             </p>
           </div>
 
           {/* ── Stage list ─────────────────────────────────── */}
-          <div className="flex flex-col items-stretch">
+          <div className="flex flex-col items-stretch space-y-1">
             {STAGES.map((s, idx) => {
               const isComplete = currentIndex > idx
               const isActive = currentIndex === idx
@@ -108,13 +108,13 @@ export function PipelineProgress({
               return (
                 <div key={s.id}>
                   {/* ── Stage row ─────────────────────────── */}
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3 sm:gap-4">
                     {/* Icon container */}
                     <div className="relative flex-shrink-0">
                       <motion.div
                         layout
                         className={`
-                          flex items-center justify-center w-14 h-14 rounded-2xl
+                          flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl
                           transition-colors duration-500
                           ${
                             isComplete
@@ -136,11 +136,11 @@ export function PipelineProgress({
                               damping: 18,
                             }}
                           >
-                            <CheckCircle2 className="w-6 h-6 text-success-400" />
+                            <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-success-400" />
                           </motion.div>
                         ) : (
                           <s.Icon
-                            className={`w-6 h-6 transition-colors duration-500 ${
+                            className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-500 ${
                               isActive ? 'text-accent-400' : 'text-muted'
                             }`}
                           />
@@ -155,9 +155,9 @@ export function PipelineProgress({
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0, opacity: 0 }}
                             transition={{ duration: 0.25 }}
-                            className="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 rounded-full bg-accent-500 shadow-glow-accent"
+                            className="absolute -top-1 -right-1 flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-accent-500 shadow-glow-accent"
                           >
-                            <Loader2 className="w-3 h-3 text-white animate-spin" />
+                            <Loader2 className="w-2 h-2 sm:w-3 sm:h-3 text-white animate-spin" />
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -166,7 +166,7 @@ export function PipelineProgress({
                     {/* Labels */}
                     <div className="flex-1 min-w-0">
                       <p
-                        className={`text-sm font-semibold transition-colors duration-500 ${
+                        className={`text-xs sm:text-sm font-semibold transition-colors duration-500 ${
                           isIdle ? 'text-muted' : 'text-primary'
                         }`}
                       >
@@ -255,10 +255,10 @@ export function PipelineProgress({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ delay: 0.2, duration: 0.4 }}
-                className="mt-8 flex items-center justify-center gap-2 text-success-400"
+                className="mt-6 sm:mt-8 flex items-center justify-center gap-2 text-success-400"
               >
-                <CheckCircle2 className="w-5 h-5" />
-                <span className="text-sm font-semibold">
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="text-xs sm:text-sm font-semibold">
                   Processing complete
                 </span>
               </motion.div>
@@ -273,18 +273,18 @@ export function PipelineProgress({
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 8, scale: 0.97 }}
                 transition={{ duration: 0.35 }}
-                className="mt-8 p-4 rounded-xl bg-recording-500/10 border border-recording-500/40 flex items-start gap-3"
+                className="mt-6 sm:mt-8 p-3 sm:p-4 rounded-xl bg-recording-500/10 border border-recording-500/40 flex items-start gap-3"
               >
-                <AlertCircle className="w-5 h-5 text-recording-500 shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-sm font-semibold text-recording-400">
+                <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-recording-500 shrink-0 mt-0.5" />
+                <div className="min-w-0 flex-1">
+                  <p className="text-xs sm:text-sm font-semibold text-recording-400">
                     Something went wrong
                   </p>
-                  <p className="text-xs text-recording-400/80 mt-1">
+                  <p className="text-xs text-recording-400/80 mt-1 break-words">
                     {errorMsg || 'An error occurred during processing.'}
                   </p>
                   {onRetry && (
-                    <button onClick={onRetry} className="btn-secondary mt-3 text-xs">
+                    <button onClick={onRetry} className="btn-secondary mt-3 text-xs py-2 px-3 touch-target">
                       Try Again
                     </button>
                   )}

@@ -163,27 +163,27 @@ export default function Home() {
   return (
     <main className="min-h-[calc(100vh-4rem)] relative overflow-hidden">
       
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 lg:py-28">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 lg:py-28">
         
         {/* Split Layout Hero */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center mb-16 sm:mb-24 animate-fade-in">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-8 items-center mb-12 sm:mb-20 lg:mb-24 animate-fade-in">
           
           {/* Left side: Text Content */}
-          <div className="text-center lg:text-left space-y-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-500/10 border border-accent-500/20 text-accent-400 text-sm font-medium animate-slide-up">
-              <Sparkles className="w-4 h-4" />
-              <span>Powered by Groq & Llama 3.3</span>
+          <div className="text-center lg:text-left space-y-6 sm:space-y-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-500/10 border border-accent-500/20 text-accent-400 text-xs sm:text-sm font-medium animate-slide-up">
+              <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+              <span className="whitespace-nowrap">Powered by Groq & Llama 3.3</span>
             </div>
             
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1]">
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight sm:leading-tight lg:leading-[1.1] break-words">
               <AnimatedTitle text="Never lose a" delay={0.1} /><br />
-              <div className="py-1">
+              <div className="py-0.5 sm:py-1">
                 <RotatingText words={['decision', 'deadline', 'insight', 'action item']} />
               </div>
               <AnimatedTitle text="again." delay={0.5} />
             </h1>
             
-            <p className="text-secondary text-lg sm:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed animate-slide-up" style={{ animationDelay: '800ms' }}>
+            <p className="text-secondary text-sm sm:text-base lg:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed animate-slide-up" style={{ animationDelay: '800ms' }}>
               Upload a recording or paste a transcript. Get a clean summary, firm decisions, action items with owners, and a send-ready follow-up email — in under 30 seconds.
             </p>
           </div>
@@ -196,7 +196,7 @@ export default function Home() {
 
         {/* Main Content (Upload / Paste Zone) */}
         {stage === 'idle' || stage === 'error' ? (
-          <div className="max-w-3xl mx-auto space-y-6 animate-slide-up" style={{ animationDelay: '300ms' }}>
+          <div className="max-w-3xl mx-auto space-y-4 sm:space-y-6 animate-slide-up" style={{ animationDelay: '300ms' }}>
             <UploadZone
               onFileDrop={handleProcessAudio}
               onTranscriptPaste={handleProcessTranscript}
