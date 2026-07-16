@@ -93,14 +93,23 @@ export function Navbar() {
       {/* Mobile Menu Dropdown */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-16 left-0 right-0 bg-background border-b border-border z-40 sm:hidden shadow-xl"
-          >
-            <div className="flex flex-col p-4 gap-2">
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 top-16 bg-background/80 backdrop-blur-sm z-30 sm:hidden"
+              onClick={() => setMobileOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-16 left-0 right-0 bg-surface-0 border-b border-border z-40 sm:hidden shadow-xl"
+            >
+              <div className="flex flex-col p-4 gap-2">
               <Link
                 href="/"
                 onClick={() => setMobileOpen(false)}
@@ -147,6 +156,7 @@ export function Navbar() {
               )}
             </div>
           </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
